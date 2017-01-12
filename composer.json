@@ -1,0 +1,19 @@
+{
+    "name": "jhonatancf/sdkptp",
+    "description": "SDK PTP",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "JhonatanCF",
+            "email": "chiquifu55@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "JhonatanCF5\\": "src/"
+        }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^4.8"
+    }
+}
