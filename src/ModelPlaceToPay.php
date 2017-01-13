@@ -8,7 +8,9 @@ class ModelPlaceToPay
 
     public function __construct(array $attributes = array())
     {
-        $this->attributes = $attributes;
+        if(count($attributes)) {
+            $this->attributes = $attributes;
+        }
     }
 
     public function setAttribute($name, $value)
