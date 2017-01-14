@@ -1,6 +1,6 @@
 <?php
 
-namespace JhonatanCF5;
+namespace JhonatanCF5\Helpers;
 
 class Str
 {
