@@ -34,7 +34,7 @@ class SDKPlaceToPay
 
 		if($banks==null) {
 			$banks = array();
-			$result = $this->clientSOAP->__soapCall('getBankList', array(['auth' => $this->auth]));
+			$result = $this->callActionSoap('getBankList', ['auth' => $this->auth]);
 
 			foreach($result->getBankListResult->item as $bank) {
 				$banks[] = new Bank(get_object_vars($bank));
@@ -47,21 +47,21 @@ class SDKPlaceToPay
 
 	public function createTransaction(PSETransactionRequest $transactionRequest)
 	{
-		$result = $this->clientSOAP->__soapCall('createTransaction', array(['auth' => $this->auth, 'transaction' => $transactionRequest]));
+		$result = $this->callActionSoap('createTransaction', ['transaction' => $transactionRequest]);
 
 		return $this->getAndSavePSETransactionResponse(get_object_vars($result->createTransactionResult));
 	}
 
 	public function createTransactionMultiCredit(PSETransactionMultiCreditRequest $transactionRequest)
 	{
-		$result = $this->clientSOAP->__soapCall('createTransactionMultiCredit', array(['auth' => $this->auth, 'transaction' => $transactionRequest]));
+		$result = $this->callActionSoap('createTransactionMultiCredit', ['transaction' => $transactionRequest]);
 
 		return $this->getAndSavePSETransactionResponse(get_object_vars($result->createTransactionMultiCreditResult));
 	}
 
 	public function ​getTransactionInformation($transactionID)
 	{
-		$result = $this->clientSOAP->__soapCall('getTransactionInformation', array(['auth' => $this->auth, 'transactionID' => $transactionID]));
+		$result = $this->callActionSoap('getTransactionInformation', ['transactionID' => $transactionID]);
 
 		return new TransactionInformation(get_object_vars($result->getTransactionInformationResult));
 	}
@@ -83,6 +83,12 @@ class SDKPlaceToPay
 		    	['return_code', '=', 'PENDING'],
 		    	['created_at', '<', date('Y-m-d H:i:s', strtotime ( '-7 minute' , strtotime ( $fecha ) ))],
 			])->get();
+	}
+
+	private function callActionSoap($action, $params)
+	{
+		$params['auth'] = $this->auth;
+		return $this->clientSOAP->$action($params);
 	}
 
 	/**
