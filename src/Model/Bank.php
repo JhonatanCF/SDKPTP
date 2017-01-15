@@ -7,7 +7,7 @@ namespace JhonatanCF5\Model;
  */
 class Bank extends ModelPlaceToPay
 {
-
+	protected $attributes = ['bankCode', 'bankName'];
 }
 
  ?>

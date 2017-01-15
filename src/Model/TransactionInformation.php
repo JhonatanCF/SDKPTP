@@ -11,7 +11,6 @@ class TransactionInformation extends ModelPlaceToPay
 							 'returnCode', 'trazabilityCode', 'transactionCycle', 'transactionState', 'responseCode',
 							 'responseReasonCode', 'responseReasonText'];
 
-
 }
 
 ?>
