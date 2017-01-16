@@ -1,4 +1,4 @@
-#PlaceToPay SDK SOAP WS - Version 1.0.0
+#PlaceToPay SDK SOAP WS - Version 1.0.1
 
 ##Instalación
 
